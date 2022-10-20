@@ -1,0 +1,123 @@
+.title{
+    font-size: 30px;
+    margin: 30px 0 20px 0;
+    text-align: center 
+}
+
+.container{
+    margin-top: 20px;
+    width: 100%;
+    margin-left: 5%;
+}
+
+
+.column-container{
+    display: flex;
+    margin-top: 30px;
+}
+
+.left-column{
+    width: 30%;
+    margin-left: 5%;
+    border: 3 px solid salmon;
+}
+
+.right-column{
+    width: 70%;
+    margin-left: 5%;
+    border: 3 px solid green;
+}
+
+t {
+    font-size: 20px;
+}
+
+.button-container {
+    display: inline-block;
+    padding: 4px 4px;
+    width: 75%;
+    margin-top: 20px;
+    margin-left: 13%;
+    
+  }
+
+
+.btn-1{
+    margin-top: 10px;
+    margin-right: 10px;
+    text-align: center;
+    cursor: pointer;
+    background-color: rgb(108, 209, 108);
+    color: black;
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 16px;
+    
+}
+
+
+.btn-2{
+    margin-top: 10px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    cursor: pointer;
+    background-color:rgb(180, 177, 177);
+    color: black;
+    display: block;
+    border-radius: 5px;
+    font-size: 20px;
+    
+}
+
+.draw-instr{
+    margin-top: 20px;
+}
+
+.img-frame{
+    height: 350px;
+    width: 450px;
+    padding: 8px 8px;
+    border: 3px solid #4472C4;
+}
+
+#canvas {
+    width:2000px;
+    height:2000px;
+    border: 10px solid transparent;
+}
+.rectangle {
+    border: 1px solid #FF0000;
+    position: absolute;
+}
+
+.image-inner{
+    padding: 2px 2px;
+    border: 3px solid #4472C4;
+}
+
+.stage{
+    position: absolute;
+}
+
+.prediction-container{
+    text-align: left;
+    font-size: 16px;
+    width: 75%;
+    background-color: rgba(216, 160, 55, 0.632);
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.button-container {
+    display: inline-block;
+    padding: 4px 4px;
+    width: 75%;
+    margin-top: 20px;
+    margin-left: 13%;
+    
+}
+
+.instr{
+    margin-top: 20px;
+}
