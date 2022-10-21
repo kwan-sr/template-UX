@@ -34,8 +34,30 @@ const SurveyContainer = () => {
     console.log('Received values of form: ', values);
     let copySaveArray = values
     setAnswers(values)
+    // save data
+    let data = {
+        user_id: localStorage.getItem("user-id"),
+        q1: 1, 
+        q2: 2,
+    };
+    sendData(data)
+    let path = '/#/End'; 
+    window.location.assign(path);
   };
 
+  const sendData = (obj) => {
+    fetch('http://localhost:8080/surveyData', {
+      method: 'POST',
+      body: JSON.stringify(obj),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    }).then(response => response.json())
+      .then(message => {
+        console.log(message)
+        // getLastestTodos();
+      })
+  } 
 
 
 

@@ -9,15 +9,17 @@ function PredictionContainer({ currentPrediction }) {
 
 
     useEffect(() => {
-        setPredMessage("The AI assistant suggests this image corresponds to a(n) ")
+        setPredMessage("Example: The AI assistant suggests this image corresponds to a(n) ")
     }, []);
 
 
     return (
         <div className="column-container">
-            <div className="prediction-container"> 
-                You can create boxes to separate some information
-                <p> {predMessage} <pre>{currentPrediction} </pre></p>
+            <div className="prediction-container">
+                <div className="text"> 
+                    You can create boxes to separate some information
+                    <p> {predMessage} <b> {currentPrediction} </b>   </p>
+                </div>
             </div> 
         </div>
     )
