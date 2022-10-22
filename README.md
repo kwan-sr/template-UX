@@ -1,6 +1,6 @@
 ## Template for designing your user experience
 
-This template uses React to build the frontend and Flask in the backend. The overall structure was created to support a user study from a starting page followed by instructions, the main experiment, and a final survey.
+This template uses React to build the frontend and Flask in the backend. The overall structure was created to support a user study from a starting page followed by instructions, the main experiment, and a final survey. Chrome is recommended. 
 
 ## Getting Started
 You can directly clone this repository and follow these steps to launch the web application. 
@@ -19,7 +19,7 @@ First, you need to install NodeJS and NPM from the website: [https://nodejs.org/
    source myvenv/bin/activate
    ```
 
-**Note: you need this version of Flask SQLAlchemy:
+**Note**: you need this version of Flask SQLAlchemy:
    ```sh
    pip install flask_sqlalchemy==2.5.1
    ```
@@ -33,14 +33,14 @@ First, you need to install NodeJS and NPM from the website: [https://nodejs.org/
    ```sh
    python api.py
    ```
-**Note: This will create the database and it will appear in the tmp folder (test.db). 
+**Note**: This will create the database and it will appear in the tmp folder (`test.db`). 
 
-**Note: You can copy this link in a browser [http://0.0.0.0:8080/time](http://0.0.0.0:8080/time) to make sure that the backend is running. You can change the endpoint to visualize different outcomes (check the endpoints in the api.py script). 
+**Note**: You can copy this link in a browser [http://0.0.0.0:8080/time](http://0.0.0.0:8080/time) to make sure that the backend is running. You can change the endpoint to visualize different outcomes (check the endpoints in the api.py script). 
 
 5. In another terminal tab, go to the src/ folder to launch the frontend using the following line:
 ### `npm start`
-**Note: this will open a browser or you can open [http://localhost:3000/#/](http://localhost:3000/#/) to view it. Chrome is recommended. 
+**Note**: this will open a browser or you can open [http://localhost:3000/#/](http://localhost:3000/#/) to view it. 
 
-**Note: You can open the browser console (right click-Inspect-Console) to visualize log messages or errors from the frontend. 
+**Note**: You can open the browser console (right click-Inspect-Console) to visualize log messages or errors from the frontend. 
 
-The application supports two tasks (chosen randomly). If you want to learn how to send data to the backend, you should follow the process in the task 1 [http://localhost:3000/#/Main1](http://localhost:3000/#/Main1). 
+The application supports two tasks (chosen randomly). If you want to learn how to send data to the backend, you should follow the process in task 1 at: [http://localhost:3000/#/Main1](http://localhost:3000/#/Main1). 
