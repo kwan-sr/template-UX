@@ -3,7 +3,6 @@ import { Button, Modal } from 'antd'
 import "antd/dist/antd.css";
 import "./main.css";
 
-import PopUp from "../../components/popup";
 function Main2Container() {
 
     const [text, setText] = useState("");

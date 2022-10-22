@@ -38,7 +38,9 @@ First, you need to install NodeJS and NPM from the website: [https://nodejs.org/
 **Note**: You can copy this link in a browser [http://0.0.0.0:8080/time](http://0.0.0.0:8080/time) to make sure that the backend is running. You can change the endpoint to visualize different outcomes (check the endpoints in the api.py script). 
 
 5. In another terminal tab, go to the src/ folder to launch the frontend using the following line:
-### `npm start`
+   ```sh
+   npm start
+   ```
 **Note**: this will open a browser or you can open [http://localhost:3000/#/](http://localhost:3000/#/) to view it. 
 
 **Note**: You can open the browser console (right click-Inspect-Console) to visualize log messages or errors from the frontend. 

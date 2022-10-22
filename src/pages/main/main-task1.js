@@ -10,7 +10,6 @@ function Main1Container() {
     const [imageData, setImageData] = useState([]);
     const [currentImage, setCurrentImage] = useState("");
     const [currentPrediction, setCurrentPrediction] = useState("");
-    const [visible, setVisible] = useState(false);
     const [imageCount, setImageCount] = useState(0);
     const [showPrediction, setShowPrediction] = useState(false);
     const [taskTime, setTaskTime] = useState((Date.now() + 1000 * 1000));
@@ -68,7 +67,6 @@ function Main1Container() {
         }).then(response => response.json())
           .then(message => {
             console.log(message)
-            // getLastestTodos();
           })
       } 
 
