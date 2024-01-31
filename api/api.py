@@ -30,12 +30,14 @@ class Responses(db.Model):
     q_id = db.Column(db.String(20), nullable=False)
     user_id = db.Column(db.Integer, nullable=False)
     ans = db.Column(db.Integer, nullable=False)
+    text = db.Column(db.String(50), nullable=False)
     time = db.Column(db.Float, nullable=False)
 
-    def __init__(self, q_id, user_id, ans, time):
+    def __init__(self, q_id, user_id, ans, text, time):
         self.q_id = q_id
         self.user_id = user_id
         self.ans = ans
+        self.text = text
         self.time = time
 
 
@@ -61,10 +63,11 @@ images = [{'name': 'cardinal.jpg', 'label': 'Cardinal'},
 def get_current_time():
     return jsonify({'time': time.strftime("%I:%M:%S %p", time.localtime())})
 
+# send data from backend to frontend
 
+# use case 1: assign a random task to the current user and create an id
 @app.route('/setup', methods=['GET'])
 def setup():
-    # assign a random task to the current user
     task_num = random.randint(1,2)
     new_user = User(task=task_num)
     db.session.add(new_user)
@@ -73,10 +76,20 @@ def setup():
     response = {'user_id': user_id, 'task_number': task_num}
     return jsonify(response)
 
+@app.route('/setup_main', methods=['GET'])
+def setup_main():
+    # fix the task to 1 to display Main1
+    task_num = 1
+    new_user = User(task=task_num)
+    db.session.add(new_user)
+    db.session.commit()
+    user_id = new_user.user_id
+    response = {'user_id': user_id, 'task_number': task_num}
+    return jsonify(response)
 
+# use case 2:# define the order of the images to be loaded
 @app.route('/imageInfo', methods=['GET'])
 def getImageInfo():
-    # define the order of the images to be loaded
     random.shuffle(images)
     response_body = {'imgs': images}
     return jsonify(response_body)
@@ -89,9 +102,10 @@ def responsesData():
     q_id = request_data['q_id']
     user_id = request_data['user_id']
     ans = request_data['ans']
+    text = request_data['input']
     time = request_data['time']
     print('saving data')
-    new_entry = Responses(q_id, user_id, ans, time)
+    new_entry = Responses(q_id, user_id, ans, text, time)
     db.session.add(new_entry)
     db.session.commit()
     msg = "Record successfully added"
@@ -115,13 +129,14 @@ def surveyData():
     return jsonify(response_body) 
 
 
-# auxiliary functions to visualize data
+# auxiliary functions to visualize stored data
 def responses_serializer(obj):
     return {
       'id': obj.id,
       'q_id': obj.q_id,
       'user_id': obj.user_id,
       'ans': obj.ans,
+      'text': obj.text,
       'time': obj.time
     }
 

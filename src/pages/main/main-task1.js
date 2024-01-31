@@ -6,7 +6,10 @@ import "./main.css";
 import PredictionContainer from '../../components/predictionContainer'
 
 function Main1Container() {
+    const [text, setText] = useState("");
+    const [task, setTask] = useState(0);
     const [choice, setChoice] = useState(0);
+    const [tmpUser, setTmpUser] = useState(0);
     const [imageData, setImageData] = useState([]);
     const [currentImage, setCurrentImage] = useState("");
     const [currentPrediction, setCurrentPrediction] = useState("");
@@ -22,12 +25,6 @@ function Main1Container() {
     let totalImages = 3;
     const baseImgUrl = "./";
 
-    const routeChange = () =>{ 
-        let path = '/#/Survey'; 
-        window.location.assign(path);
-
-    }
-
     const nextChange = () =>{
         if (choice<1) {
             alert("Please make sure to complete all the fields!");
@@ -36,8 +33,9 @@ function Main1Container() {
             // save data
             let data = {
                 q_id: currentImage,
-                user_id: localStorage.getItem("user-id"),
+                user_id: tmpUser,
                 ans: choice,
+                input: text, 
                 time: ((Date.now() - taskTime) / 1000).toFixed(3)
             };
             console.log(data)
@@ -48,6 +46,7 @@ function Main1Container() {
             } else {
                 // reinitialize variables
                 setChoice(0); 
+                setText("")
                 setImageCount(count);
                 setCurrentImage(imageData[count].name);
                 setCurrentPrediction(imageData[count].label);
@@ -76,6 +75,10 @@ function Main1Container() {
 
     };
 
+    const onChangeInput = e => {
+        setText(e.target.value);
+    };
+
     const handlePredict=()=>{
         setShowPrediction(true);
     };
@@ -88,6 +91,19 @@ function Main1Container() {
             console.log(data.time)
         });
         }, []);
+
+    // create a new user here 
+    useEffect(() => {
+        fetch('http://localhost:8080/setup_main')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            console.log(data['task_number']);
+            setTask(data['task_number']);
+            // send user id as well
+            setTmpUser(data['user_id'])
+        });
+    }, []);
     
 
     // initialize image
@@ -125,11 +141,13 @@ function Main1Container() {
             </div>
 
             <div className="right-column"> 
-            <p> You can present the outcomes of the algorithms on this side:</p> 
+            <div className="instr">
+                <t> You can present the outcomes of the algorithms on this side:</t> 
+            </div>
                 
             
             <Button className="btn-1"  onClick={()=>{handlePredict()}}>
-                Get a prediction
+                Ask the AI 
             </Button>
 
             { showPrediction ?
@@ -140,6 +158,15 @@ function Main1Container() {
                 <>
                 </>
             }
+
+            <div className="instr">
+                    <t> This is how you create a text box if you need user input:</t>
+            </div>
+            <input
+                type="text"
+                value={text}
+                onChange={onChangeInput}
+            />
 
 
             <div className="instr">
@@ -162,10 +189,9 @@ function Main1Container() {
             </div>
 
             {(moveToSurvey) && 
-            <div className="button-container"> 
-                <Button disabled={!moveToSurvey} variant="btn btn-success" onClick={routeChange}>
-                    Survey
-                </Button>
+            <div className="instr"> 
+                <t> You have completed the three tasks. </t>
+                
             </div>
             }
 

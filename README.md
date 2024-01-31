@@ -29,13 +29,14 @@ First, you need to install NodeJS and NPM from the website: [https://nodejs.org/
    mkdir tmp
    ```
 
-4. To keep the backend on, run the following line in the api/ folder:
+4. To keep the backend on, run the following line in the api/ folder. This is your template
+code for the backend:
    ```sh
    python api.py
    ```
 **Note**: This will create the database and it will appear in the tmp folder (`test.db`). 
 
-**Note**: You can copy this link in a browser [http://0.0.0.0:8080/time](http://0.0.0.0:8080/time) to make sure that the backend is running. You can change the endpoint to visualize different outcomes (check the endpoints in the api.py script). 
+**Note**: You can copy this link in a browser [http://0.0.0.0:8080/time](http://0.0.0.0:8080/time) to make sure that the backend is running. You can change the endpoint to visualize different outcomes (check the other endpoints in the api.py script). 
 
 5. In another terminal tab, go to the src/ folder to launch the frontend using the following line:
    ```sh
@@ -45,4 +46,7 @@ First, you need to install NodeJS and NPM from the website: [https://nodejs.org/
 
 **Note**: You can open the browser console (right click-Inspect-Console) to visualize log messages or errors from the frontend. 
 
-The application supports two tasks (chosen randomly). If you want to learn how to send data to the backend, you should follow the process in task 1 at: [http://localhost:3000/#/Main1](http://localhost:3000/#/Main1). 
+In this assignment we will focus on building the main page as the prototype. To directly load the template of the main page, modify the URL as follows: [http://localhost:3000/#/Main1](http://localhost:3000/#/Main1) 
+
+The code of this template is located at src/pages/main/main-task1.js. Some functionalities 
+are implemented as an example and data is recorded in the local database. You may need to modify other files as well (e.g., .css files for styling, create new componentes, or pages if needed).  
