@@ -24,21 +24,32 @@ class User(db.Model):
     def __init__(self, task):
         self.task = task
 
+class Responses_new(db.Model):
+    id = db.Column(db.Integer, nullable=False, primary_key=True)
+    user_id = db.Column(db.Integer, nullable=False)
+    age_years = db.Column(db.String(10), nullable=False)
+    age_months = db.Column(db.String(10), nullable=False)
+    concerns = db.Column(db.String(500), nullable=False)
+
+    def __init__(self, user_id, age_years, age_months, concerns):
+        self.user_id = user_id
+        self.age_years = age_years
+        self.age_months = age_months
+        self.concerns = concerns
+
 
 class Responses(db.Model):
     id = db.Column(db.Integer, nullable=False, primary_key=True)
-    q_id = db.Column(db.String(20), nullable=False)
     user_id = db.Column(db.Integer, nullable=False)
-    ans = db.Column(db.Integer, nullable=False)
-    text = db.Column(db.String(50), nullable=False)
-    time = db.Column(db.Float, nullable=False)
+    age_years = db.Column(db.String(10), nullable=False)
+    age_months = db.Column(db.String(10), nullable=False)
+    concerns = db.Column(db.String(500), nullable=False)
 
-    def __init__(self, q_id, user_id, ans, text, time):
-        self.q_id = q_id
+    def __init__(self, user_id, age_years, age_months, concerns):
         self.user_id = user_id
-        self.ans = ans
-        self.text = text
-        self.time = time
+        self.age_years = age_years
+        self.age_months = age_months
+        self.concerns = concerns
 
 
 class Survey(db.Model):
@@ -96,16 +107,18 @@ def getImageInfo():
 
 
 # send data from frontend to backend
+### TODO: Modified to receive the right form of data
 @app.route('/responsesData', methods=['POST'])
 def responsesData():
     request_data = json.loads(request.data)
-    q_id = request_data['q_id']
     user_id = request_data['user_id']
-    ans = request_data['ans']
-    text = request_data['input']
-    time = request_data['time']
+    age_years = request_data['age_years']
+    age_months = request_data['age_months']
+    concerns = request_data['concerns']
+
     print('saving data')
-    new_entry = Responses(q_id, user_id, ans, text, time)
+    new_entry = Responses_new(user_id, age_years, age_months, concerns)
+    print('Recorded entry')
     db.session.add(new_entry)
     db.session.commit()
     msg = "Record successfully added"
@@ -133,11 +146,10 @@ def surveyData():
 def responses_serializer(obj):
     return {
       'id': obj.id,
-      'q_id': obj.q_id,
       'user_id': obj.user_id,
-      'ans': obj.ans,
-      'text': obj.text,
-      'time': obj.time
+      'age_years': obj.age_years,
+      'age_months': obj.age_months,
+      'concerns': obj.concerns
     }
 
 

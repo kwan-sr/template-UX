@@ -2,6 +2,7 @@ import React, { Component, useState, useEffect } from "react";
 import {Button, Modal, Checkbox, Input, Radio} from 'antd'
 import "antd/dist/antd.css";
 import "./main.css";
+import ImageUpload from "../../components/ImageUpload"
 
 import PredictionContainer from '../../components/predictionContainer'
 
@@ -24,6 +25,11 @@ function Main1Container() {
 
     let totalImages = 3;
     const baseImgUrl = "./";
+
+    const routeChange = () =>{ 
+        let path = '/#/Loading'; 
+        window.location.assign(path);
+    }
 
     const nextChange = () =>{
         if (choice<1) {
@@ -126,85 +132,32 @@ function Main1Container() {
 
 
     return (
-      <>
-       {render ?
 
-            <div className="container">
-            <div className="title">Main experiment</div>
-            <div className="column-container"> 
-            <div className="left-column"> 
-                <p> This is how you load an image:</p>
-                <div className="img-frame">
-                    <img className="image-inner" src={baseImgUrl + currentImage}/>
-                </div>
-                <p> {imageCount + 1} / {totalImages} Images</p>
+        <div className="container">
+
+            <h1>Dysgraphia At-Home Screening</h1> 
+
+            <div className="title">Upload a clear picture of your child's handwriting:</div>
+
+            <div>
+                <p> (typically school work)</p>
+                <ImageUpload />
             </div>
 
-            <div className="right-column"> 
-            <div className="instr">
-                <t> You can present the outcomes of the algorithms on this side:</t> 
+            <br></br>
+
+            <div>
+                <button
+                    variant="btn btn-success"  // Disable the button if no text is entered
+                    onClick={routeChange}
+                >
+                Next
+                </button>
             </div>
-                
-            
-            <Button className="btn-1"  onClick={()=>{handlePredict()}}>
-                Ask the AI 
-            </Button>
+        </div>
 
-            { showPrediction ?
-                <PredictionContainer 
-                    currentPrediction={currentPrediction}
-                />
-            :
-                <>
-                </>
-            }
-
-            <div className="instr">
-                    <t> This is how you create a text box if you need user input:</t>
-            </div>
-            <input
-                type="text"
-                value={text}
-                onChange={onChangeInput}
-            />
-
-
-            <div className="instr">
-                <t> This is how you can ask a multiple choice question.</t>
-            </div>    
-                <Radio.Group onChange={onChangeMultiple} value={choice}>
-                    <Radio value={1}> <t> Option 1</t></Radio>
-                    <Radio value={2}> <t> Option 2</t></Radio>
-                    <Radio value={3}> <t> Option 3</t></Radio>
-                </Radio.Group>
-
-            </div>
-            </div>
-
-
-            <div className="button-container"> 
-                <Button variant="btn btn-success"  style={{marginLeft:"70%"}}  onClick={nextChange}>
-                    Next
-                </Button>
-            </div>
-
-            {(moveToSurvey) && 
-            <div className="instr"> 
-                <t> You have completed the three tasks. </t>
-                
-            </div>
-            }
-
-            </div>
-
-        :
-            <> 
-            <h1> Loading ...</h1>
-            </>
-        }
-      </>
-       
-      );
+        
+    );
 }
 
 export default Main1Container;
